@@ -57,9 +57,9 @@ minSdkVersion 21
 ## Usage
 
 ```dart
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_soft_camera/flutter_soft_camera.dart';
+import 'package:camera/camera.dart';
 
 late List<CameraDescription> _cameras;
 
@@ -115,7 +115,7 @@ class _CameraAppState extends State<CameraApp> {
       return Container();
     }
     return MaterialApp(
-      home: SoftCamera(controller),
+      home: Scaffold(body: SoftCamera(controller: controller)),
     );
   }
 }
