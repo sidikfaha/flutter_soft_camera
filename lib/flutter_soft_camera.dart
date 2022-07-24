@@ -1,11 +1,8 @@
 library flutter_soft_camera;
 
-import 'dart:developer';
-
 import 'package:audioplayers/audioplayers.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_soft_camera/helpers.dart';
 
 class SoftCameraStyle {
   Color? primary;
@@ -74,17 +71,8 @@ class _SoftCameraState extends State<SoftCamera> {
         _mediaSize = MediaQuery.of(context).size;
         _scale = 1 / (_ctr.value.aspectRatio * _mediaSize.aspectRatio);
       });
-    }).catchError((Object e) {
-      if (e is CameraException) {
-        switch (e.code) {
-          case 'CameraAccessDenied':
-            log('User denied camera access.');
-            break;
-          default:
-            log('Handle other errors.');
-            break;
-        }
-      }
+    }).catchError((e) {
+      throw e;
     }).whenComplete(() {
       setState(() {
         _loading = false;
@@ -152,7 +140,9 @@ class _SoftCameraState extends State<SoftCamera> {
                       color: Colors.white,
                       icon: const Icon(Icons.close),
                       onPressed: () {
-                        Nav.pop(context);
+                        NavigatorState nav = Navigator.of(context);
+                        if (!nav.canPop()) return;
+                        nav.pop();
                       },
                     ),
                   ),
@@ -227,7 +217,6 @@ class _SoftCameraState extends State<SoftCamera> {
     _showOverlay();
 
     final image = await _ctr.takePicture();
-    log(image.path);
 
     if (widget.onCapture != null) {
       widget.onCapture!(image);
