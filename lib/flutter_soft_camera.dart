@@ -5,7 +5,11 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
 class SoftCameraStyle {
-  Color? primary;
+  Color primary;
+
+  SoftCameraStyle({
+    this.primary = Colors.blue,
+  });
 }
 
 class SoftCamera extends StatefulWidget {
@@ -54,7 +58,7 @@ class _SoftCameraState extends State<SoftCamera> {
 
   _initData() {
     _style = widget.style ?? SoftCameraStyle();
-    _shooterColor = _style.primary ?? Colors.white;
+    _shooterColor = _style.primary;
   }
 
   _initCamera() {
@@ -186,7 +190,7 @@ class _SoftCameraState extends State<SoftCamera> {
                             width: 50,
                             height: 50,
                             decoration: BoxDecoration(
-                              color: _style.primary?.withOpacity(.3),
+                              color: _style.primary.withOpacity(.3),
                               borderRadius: BorderRadius.circular(25),
                             ),
                             alignment: Alignment.center,
@@ -241,7 +245,7 @@ class _SoftCameraState extends State<SoftCamera> {
         widget.onVideo!(value);
       }
       _recording = false;
-      _shooterColor = _style.primary ?? Colors.white;
+      _shooterColor = _style.primary;
       _shooterStrokeWidth = 10;
       setState(() {});
     });
