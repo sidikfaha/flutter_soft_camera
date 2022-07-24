@@ -1,0 +1,23 @@
+name: flutter_soft_camera
+description: This package give you access to some flexible and fully customizable camera widgets.
+version: 0.0.1
+homepage:
+
+environment:
+  sdk: ">=2.17.6 <3.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  camera: ^0.10.0
+  audioplayers: ^1.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  assets:
+    - assets/camera.ogg
